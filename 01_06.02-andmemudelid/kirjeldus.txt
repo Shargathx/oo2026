@@ -4,4 +4,4 @@ Tee andmemudel filmi jaoks.
 
 Võimalda filme näha (GET), kustutada (DELETE), lisada (POST).
 
-Järgmine 12.15 algusega peaks ekraani jagama ja suuliselt rääkima, kuidas tehti.
+Järgmine loeng 10.15 algusega peaks ekraani jagama ja suuliselt rääkima, kuidas tehti.
