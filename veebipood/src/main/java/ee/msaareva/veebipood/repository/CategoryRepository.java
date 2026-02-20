@@ -1,6 +1,6 @@
-package ee.mihkel.veebipood.repository;
+package ee.msaareva.veebipood.repository;
 
-import ee.mihkel.veebipood.entity.Category;
+import ee.msaareva.veebipood.entity.Category;
 import lombok.NonNull;
 import org.springframework.data.jpa.repository.JpaRepository;
 

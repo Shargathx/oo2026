@@ -1,4 +1,4 @@
-package ee.mihkel.veebipood.entity;
+package ee.msaareva.veebipood.entity;
 
 
 import jakarta.persistence.*;
@@ -21,7 +21,7 @@ public class Order { // ERROR: syntax error at or near "order"
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Date created;
-    private int total;
+    private double total;
     private String parcelMachine;
 
     @ManyToOne

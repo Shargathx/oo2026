@@ -1,4 +1,4 @@
-package ee.mihkel.veebipood.dto;
+package ee.msaareva.veebipood.dto;
 
 import lombok.Data;
 

@@ -1,6 +1,6 @@
-package ee.mihkel.veebipood.repository;
+package ee.msaareva.veebipood.repository;
 
-import ee.mihkel.veebipood.entity.Product;
+import ee.msaareva.veebipood.entity.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 // repository --> andmebaasiga suhtlemiseks. tema sees on kõik funktsioonid, mida on võimalik

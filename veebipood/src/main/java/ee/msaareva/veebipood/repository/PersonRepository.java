@@ -1,6 +1,6 @@
-package ee.mihkel.veebipood.repository;
+package ee.msaareva.veebipood.repository;
 
-import ee.mihkel.veebipood.entity.Person;
+import ee.msaareva.veebipood.entity.Person;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 // CrudRepository --> minimaalsed vajalikud (standardsed) funktsioonid

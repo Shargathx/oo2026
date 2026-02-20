@@ -1,4 +1,4 @@
-package ee.mihkel.veebipood.exception;
+package ee.msaareva.veebipood.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

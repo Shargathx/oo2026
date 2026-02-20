@@ -1,7 +1,7 @@
-package ee.mihkel.veebipood.controller;
+package ee.msaareva.veebipood.controller;
 
-import ee.mihkel.veebipood.entity.Category;
-import ee.mihkel.veebipood.repository.CategoryRepository;
+import ee.msaareva.veebipood.entity.Category;
+import ee.msaareva.veebipood.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

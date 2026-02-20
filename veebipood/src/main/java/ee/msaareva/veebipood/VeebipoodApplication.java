@@ -1,4 +1,4 @@
-package ee.mihkel.veebipood;
+package ee.msaareva.veebipood;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

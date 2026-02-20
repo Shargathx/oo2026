@@ -1,4 +1,4 @@
-package ee.mihkel.veebipood.entity;
+package ee.msaareva.veebipood.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

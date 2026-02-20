@@ -1,6 +1,6 @@
-package ee.mihkel.veebipood.repository;
+package ee.msaareva.veebipood.repository;
 
-import ee.mihkel.veebipood.entity.Order;
+import ee.msaareva.veebipood.entity.Order;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface OrderRepository extends JpaRepository<Order, Long> {
