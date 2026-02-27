@@ -26,7 +26,7 @@ public class DecathlonController {
     }
 
     @PostMapping("athletes")
-    public Competitor postAthlete(@RequestBody Competitor competitor){
+    public Competitor postAthlete(@RequestBody Competitor competitor) {
         competitorService.validateCompetitor(competitor);
         return competitorRepository.save(competitor);
     }
