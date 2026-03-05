@@ -8,6 +8,8 @@ import ee.msaareva.proovikontrolltoo.repository.RentalRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+
 import static ee.msaareva.proovikontrolltoo.entity.Price.BASIC_PRICE;
 import static ee.msaareva.proovikontrolltoo.entity.Price.PREMIUM_PRICE;
 
@@ -55,6 +57,32 @@ public class RentalService {
     }
 
     public void endRental(RentalDto rentalDto) {
+        Rental returningRental = rentalRepository.findById(rentalDto.getRentalId()).orElseThrow(() -> new RuntimeException("Rental not found"));
+        if (returningRental.getReturnDate() != null) {
+            throw new RuntimeException("Rental already returned");
+        }
+        LocalDate returnDate = LocalDate.now();
+        returningRental.setReturnDate(returnDate);
 
+        LocalDate expectedReturnDate = returningRental.getRentDate().plusDays(returningRental.getPlannedDays());
+
+        if (returnDate.isAfter(expectedReturnDate)) {
+            long lateDays = returnDate.toEpochDay() - expectedReturnDate.toEpochDay();
+
+            double lateFee = 0;
+
+            switch (returningRental.getFilm().getFilmType()) {
+                case NEW_RELEASE:
+                    lateFee += PREMIUM_PRICE.getPrice() * lateDays;
+                    break;
+
+                case REGULAR_RELEASE:
+                case OLD_RELEASE:
+                    lateFee += BASIC_PRICE.getPrice() * lateDays;
+                    break;
+            }
+            returningRental.setTotalPrice(returningRental.getTotalPrice() + lateFee);
+        }
+        rentalRepository.save(returningRental);
     }
 }

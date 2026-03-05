@@ -8,6 +8,7 @@ import java.time.LocalDate;
 @Getter
 @Setter
 public class RentalDto {
+    private Long rentalId;
     private Long filmId;
     private LocalDate rentalDate;
     private Integer rentalDays;
