@@ -33,9 +33,8 @@ public class RentalController {
         return rentalService.startRental(rentalDto);
     }
 
-//    // mitu päeva tegelt rendis oli, tee check vastavalt
-//    @PostMapping("end-rental")
-//    public Rental endRental(@RequestBody RentalDto rentalDto) {
-//
-//    }
+    @PostMapping("end-rental")
+    public Rental endRental(@RequestBody RentalDto rentalDto) {
+        return rentalService.endRental(rentalDto);
+    }
 }

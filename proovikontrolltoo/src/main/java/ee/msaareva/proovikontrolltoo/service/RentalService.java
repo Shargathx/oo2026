@@ -56,7 +56,7 @@ public class RentalService {
         return rentalRepository.save(rental);
     }
 
-    public void endRental(RentalDto rentalDto) {
+    public Rental endRental(RentalDto rentalDto) {
         Rental returningRental = rentalRepository.findById(rentalDto.getRentalId()).orElseThrow(() -> new RuntimeException("Rental not found"));
         if (returningRental.getReturnDate() != null) {
             throw new RuntimeException("Rental already returned");
@@ -81,8 +81,12 @@ public class RentalService {
                     lateFee += BASIC_PRICE.getPrice() * lateDays;
                     break;
             }
-            returningRental.setTotalPrice(returningRental.getTotalPrice() + lateFee);
+            Double originalPrice = returningRental.getTotalPrice();
+            if (originalPrice == null) {
+                originalPrice = 0.0;
+            }
+            returningRental.setTotalPrice(originalPrice + lateFee);
         }
-        rentalRepository.save(returningRental);
+        return rentalRepository.save(returningRental);
     }
 }

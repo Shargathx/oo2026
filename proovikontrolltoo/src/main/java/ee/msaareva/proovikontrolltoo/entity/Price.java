@@ -3,8 +3,6 @@ package ee.msaareva.proovikontrolltoo.entity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
-import java.math.BigDecimal;
-
 @Getter
 @AllArgsConstructor
 public enum Price {
