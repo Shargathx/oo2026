@@ -4,11 +4,9 @@ import ee.msaareva.kontrolltoo.entity.Word;
 import ee.msaareva.kontrolltoo.repository.WordRepository;
 import ee.msaareva.kontrolltoo.service.WordService;
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -19,7 +17,7 @@ public class LetterController {
     private final WordService wordService;
 
     @GetMapping("words")
-    public List<Word> getLetters() {
+    public List<Word> getWords() {
         return wordRepository.findAll();
     }
 
@@ -28,4 +26,31 @@ public class LetterController {
         wordService.validateWord(word);
         return wordRepository.save(word);
     }
+
+    @GetMapping("letters")
+    public int getLetters() {
+        return wordService.countAndSaveTotalAs();
+    }
+
+    @GetMapping("words-containing-a")
+    public ArrayList<Word> findWordsContainingA() {
+        return wordService.findWordsContainingLetterA();
+    }
+
+    @GetMapping("total-a-count")
+    public double getTotalACount() {
+        return wordService.getAverageACount();
+    }
+
+    @GetMapping("assign-letter")
+    public ArrayList<String> assignLetter(@RequestParam int number) {
+        return wordService.assignLetter(number);
+    }
+
+
+
+
+
+
+
 }
