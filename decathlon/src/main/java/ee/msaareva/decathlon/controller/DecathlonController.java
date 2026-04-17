@@ -3,15 +3,19 @@ package ee.msaareva.decathlon.controller;
 
 import ee.msaareva.decathlon.entity.Competitor;
 import ee.msaareva.decathlon.entity.Result;
+import ee.msaareva.decathlon.entity.ResultDto;
 import ee.msaareva.decathlon.repository.CompetitorRepository;
 import ee.msaareva.decathlon.repository.ResultRepository;
 import ee.msaareva.decathlon.service.CompetitorService;
 import ee.msaareva.decathlon.service.DecathlonService;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:5173")
 @AllArgsConstructor
 @RestController
 public class DecathlonController {
@@ -34,6 +38,12 @@ public class DecathlonController {
     @GetMapping("athletes/results")
     public List<Result> getResults() {
         return resultRepository.findAll();
+    }
+
+    @GetMapping("/results")
+    public Page<ResultDto> getResults(Pageable pageable, @RequestParam(required = false) String country
+    ) {
+        return decathlonService.getResults(pageable, country);
     }
 
     @PostMapping("athletes/{id}/results")

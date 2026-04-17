@@ -16,7 +16,7 @@ public class Result {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
-    @Enumerated(EnumType.ORDINAL)
+    @Enumerated(EnumType.STRING)
     Discipline discipline;
 
     private Double value;

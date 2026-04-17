@@ -28,29 +28,34 @@ public class ProductController {
     private ProductRepository productRepository;
 
     @GetMapping("products")
-    public List<Product> getProducts(){
+    public List<Product> getProducts() {
         return productRepository.findAll();
     }
 
+    // localhost:8080/products?page=0&size=4&sort=price,asc
     @GetMapping("products/admin")
-    public Page<Product> getAdminProducts(Pageable pageable){
-        return productRepository.findAll(pageable);
+    public Page<Product> getAdminProducts(Pageable pageable, @RequestParam(required = false) Long activeCategoryId) {
+        if (activeCategoryId == null || activeCategoryId == 0) {
+            return productRepository.findAll(pageable);
+        } else {
+            return productRepository.findAllByCategoryId(pageable, activeCategoryId);
+        }
     }
 
     @GetMapping("products/{id}")
-    public Product getOneProduct(@PathVariable Long id){
+    public Product getOneProduct(@PathVariable Long id) {
         return productRepository.findById(id).orElseThrow();
     }
 
     @DeleteMapping("products/{id}")
-    public List<Product> deleteProduct(@PathVariable Long id){
+    public List<Product> deleteProduct(@PathVariable Long id) {
         productRepository.deleteById(id); // kustutan
         return productRepository.findAll(); // uuenenud seis
     }
 
     @PostMapping("products")
-    public List<Product> addProduct(@RequestBody Product product){
-        if (product.getId()!=null){
+    public List<Product> addProduct(@RequestBody Product product) {
+        if (product.getId() != null) {
             throw new RuntimeException("Cannot add with ID");
         }
         productRepository.save(product); // siin salvestab
@@ -58,12 +63,12 @@ public class ProductController {
     }
 
     @PutMapping("products")
-    public List<Product> editProduct(@RequestBody Product product){
+    public List<Product> editProduct(@RequestBody Product product) {
         // File -> Settings -> Plugins -> Lombok -> Install
-        if (product.getId()==null){
+        if (product.getId() == null) {
             throw new RuntimeException("Cannot edit without ID");
         }
-        if (!productRepository.existsById(product.getId())){
+        if (!productRepository.existsById(product.getId())) {
             throw new RuntimeException("Product ID does not exist");
         }
         productRepository.save(product); // siin salvestab
