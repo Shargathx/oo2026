@@ -1,9 +1,7 @@
 package ee.msaareva.decathlon.controller;
 
 
-import ee.msaareva.decathlon.entity.Competitor;
-import ee.msaareva.decathlon.entity.Result;
-import ee.msaareva.decathlon.entity.ResultDto;
+import ee.msaareva.decathlon.entity.*;
 import ee.msaareva.decathlon.repository.CompetitorRepository;
 import ee.msaareva.decathlon.repository.ResultRepository;
 import ee.msaareva.decathlon.service.CompetitorService;
@@ -13,6 +11,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:5173")
@@ -23,6 +22,16 @@ public class DecathlonController {
     private final CompetitorService competitorService;
     private final ResultRepository resultRepository;
     private final DecathlonService decathlonService;
+
+    @GetMapping("Kohtunikud")
+    public List<Kohtunik> getKohtunikud() throws IOException, InterruptedException {
+        return decathlonService.getKohtunikud();
+    }
+
+    @GetMapping("Location")
+    public List<Location> getLocations() throws IOException, InterruptedException {
+        return decathlonService.getLocations();
+    }
 
     @GetMapping("athletes")
     public List<Competitor> getAthlete() {
